@@ -44,10 +44,10 @@ RUN echo '/etc/init.d/pure-ftpd restart' >> /itxq/shell/shell.sh
 RUN bash /www/server/panel/install/install_soft.sh 0 install pm2 4.2
 
 # 安装Supervisor
-RUN bash /www/server/panel/install/install_soft.sh 0 install supervisor 1
+#RUN bash /www/server/panel/install/install_soft.sh 0 install supervisor 1
 
 # 安装PHP守护进程
-RUN bash /www/server/panel/install/install_soft.sh 0 install phpguard 1
+#RUN bash /www/server/panel/install/install_soft.sh 0 install phpguard 1
 
 # 添加软件到宝塔首页
 RUN echo '["nginx", "mysql","php-7.3", "redis", "pm2", "pureftpd", "supervisor"]' > /www/server/panel/config/index.json
@@ -61,6 +61,3 @@ LABEL org.label-schema.schema-version="1.0.0" \
 
 # 开放端口
 EXPOSE 39000-40000 8888 8080 6379 3360 888 443 80 22 21 20
-
-# 启动命令
-CMD ["run-bt"]
