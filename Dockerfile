@@ -20,9 +20,10 @@ RUN echo '/etc/init.d/nginx restart' >> /itxq/shell/shell.sh
 
 # 安装MySQL
 RUN bash /www/server/panel/install/install_soft.sh 0 install mysql 8.0
+RUN cp -a -p /www/server/data/* /www/mysql/
 RUN echo '# 启动MySQL' >> /itxq/shell/shell.sh
 RUN echo 'if [ ! -d "/www/server/data/mysql" ];then' >> /itxq/shell/shell.sh
-RUN echo '  cp -a -p /www/data/* /www/server/data/' >> /itxq/shell/shell.sh
+RUN echo '  cp -a -p /www/mysql/* /www/server/data/' >> /itxq/shell/shell.sh
 RUN echo '  echo "数据库data目录初始化完成！"' >> /itxq/shell/shell.sh
 RUN echo 'else' >> /itxq/shell/shell.sh
 RUN echo '  echo "数据库data目录已存在!"' >> /itxq/shell/shell.sh
@@ -56,10 +57,10 @@ LABEL org.label-schema.schema-version="1.0.0" \
     org.label-schema.name="Docker Bt Panel Full" \
     org.label-schema.vendor="IT小强xqitw.cn" \
     org.label-schema.license="Apache Licence 2.0" \
-    org.label-schema.build-date="20191120"
+    org.label-schema.build-date="20191121"
 
 # 开放端口
-EXPOSE 8888 8080 6379 3360 888 443 80 21 20
+EXPOSE 39000-40000 8888 8080 6379 3360 888 443 80 22 21 20
 
 # 启动命令
 CMD ["run-bt"]
